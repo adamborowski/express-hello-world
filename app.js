@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.get('/', (req, res) => res.type('html').send(html(res.query.redirect)));
+app.get('/', (req, res) => res.type('html').send(html(req.query.redirect)));
 app.get('/login', (req, res) => {
     const location = req.query.redirect || 'http://localhost:3000/relogin';
     res.set('Location', location);

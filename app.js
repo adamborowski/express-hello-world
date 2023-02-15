@@ -56,6 +56,12 @@ const html = `
   </head>
   <body>
     <section>
+    <form method="GET" action="/login">
+    
+    <input name="user"></input>
+    <input type="password" name="password"></input>
+    <button type="submit">Login</button>
+</form>
       Hello from Render!
     </section>
   </body>

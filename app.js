@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.get('/', (req, res) => res.type('html').send(html));
+app.get('/', (req, res) => res.type('html').send(html(res.query.redirect)));
 app.get('/login', (req, res) => {
     const location = req.query.redirect || 'http://localhost:3000/relogin';
     res.set('Location', location);
@@ -11,7 +11,7 @@ app.get('/login', (req, res) => {
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-const html = `
+const html = redirect => `
 <!DOCTYPE html>
 <html>
   <head>
@@ -56,7 +56,7 @@ const html = `
   </head>
   <body>
     <section>
-    <form method="GET" action="/login">
+    <form method="GET" action="/login?redirect=${redirect}">
     
     <input name="user"></input>
     <input type="password" name="password"></input>

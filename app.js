@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(express.json());
+app.use(express.urlencoded());
 app.get('/', (req, res) => res.type('html').send(html(req.query.redirect)));
 app.post('/login', (req, res) => {
     console.log(req.body)

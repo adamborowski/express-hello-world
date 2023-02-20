@@ -3,8 +3,8 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.get('/', (req, res) => res.type('html').send(html(req.query.redirect)));
-app.get('/login', (req, res) => {
-    const location = req.query.redirect || 'http://localhost:3000/relogin';
+app.post('/login', (req, res) => {
+    const location = req.body.redirect || 'http://localhost:3000/relogin';
     res.set('Location', location);
     res.status(302).end();
 });
@@ -59,7 +59,7 @@ const html = redirect => `<!DOCTYPE html>
 </head>
 <body>
 <section>
-    <form method="GET" action="/login">
+    <form method="POST" action="/login">
         <input name="user">
         <input type="password" name="password">
         <input type="hidden" name="redirect" value="${redirect}">

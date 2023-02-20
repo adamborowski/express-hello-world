@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 
+app.use(express.json());
 app.get('/', (req, res) => res.type('html').send(html(req.query.redirect)));
 app.post('/login', (req, res) => {
-    console.log('body', req.body);
     const location = req.body.redirect || 'http://localhost:3000/relogin';
     res.set('Location', location);
     res.status(302).end();
